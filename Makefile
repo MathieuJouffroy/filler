@@ -22,9 +22,9 @@ SRC_NAME 	=		filler.c							\
 					init_game.c							\
 					map.c								\
 					piece.c								\
-					print.c								\
 					test_piece.c						\
 					dist_calculations.c					\
+					game.c								\
 					free.c								\
 					
 
