@@ -18,33 +18,6 @@ int	valid_line(t_filler *filler, char *line)
 	return (1);
 }
 
-void	get_point_pos(t_filler *filler)
-{
-	int i;
-	int j;
-	int cnt;
-
-	i = 0;
-	cnt = 0;
-	while (i < filler->piece.height)
-	{
-		j = 0;
-		while (filler->piece.square[i][j])
-		{
-			if (filler->piece.square[i][j] == '*')
-			{
-				filler->piece.p[cnt].x = j;
-				filler->piece.p[cnt].y = i;
-				filler->piece.p[cnt].min = filler->pnt.min;
-				cnt++;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-
 int		fill_piece(t_filler *filler)
 {
 	int 	i;
@@ -70,6 +43,31 @@ int		fill_piece(t_filler *filler)
 	return (1);
 }
 
+void	get_point_pos(t_filler *filler)
+{
+	int i;
+	int j;
+	int p_cnt;
+
+	i = 0;
+	p_cnt = 0;
+	while (i < filler->piece.height)
+	{
+		j = 0;
+		while (filler->piece.square[i][j])
+		{
+			if (filler->piece.square[i][j] == '*')
+			{
+				filler->piece.p[p_cnt].x = j;
+				filler->piece.p[p_cnt].y = i;
+				filler->piece.p[p_cnt].min = filler->pnt.min;
+				p_cnt++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 int		parse_piece(t_filler *filler)
 {
@@ -79,7 +77,8 @@ int		parse_piece(t_filler *filler)
 		return (0);
 	if (!fill_piece(filler))
 		return (errors(filler, 4));
-	filler->piece.p = (t_point*)ft_memalloc(sizeof(t_point) * filler->piece.p_cnt);
+	if (!(filler->piece.p = (t_point*)ft_memalloc(sizeof(t_point) * filler->piece.p_cnt)))
+		return (0);
 	get_point_pos(filler);
 	return (1);
 }

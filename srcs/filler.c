@@ -34,7 +34,8 @@ int main(void)
 	t_filler filler;
 
 	ft_bzero(&filler, sizeof(filler));
-	init_game(&filler);
+	if (!init_game(&filler))
+		return (0);
 	start_game(&filler);
 	return (0);	
 }
