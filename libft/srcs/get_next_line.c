@@ -25,6 +25,7 @@ static int			read_line(t_gnl *file)
 {
 	int			nb_bytes;
 	char		buff[BUFF_SIZE + 1];
+	char		*tmp;
 
 	nb_bytes = 1;
 	while (nb_bytes > 0 && !ft_strchr(file->data, '\n'))
@@ -33,7 +34,9 @@ static int			read_line(t_gnl *file)
 			|| BUFF_SIZE < 1)
 			return (-1);
 		buff[nb_bytes] = '\0';
+		tmp = file->data;
 		file->data = ft_strjoin(file->data, buff);
+		free(tmp);
 		ft_memset(buff, 0, nb_bytes);
 	}
 	return (nb_bytes);
@@ -66,6 +69,7 @@ int					get_next_line(const int fd, char **line)
 {
 	static t_list	*lst;
 	t_gnl			*file;
+	char			*tmp;
 	int				nb_bytes;
 
 	if (!line || fd < 0)
@@ -75,6 +79,7 @@ int					get_next_line(const int fd, char **line)
 		return (-1);
 	*line = update_line(file->data);
 	shift_line(&(file->data));
+	tmp = file->data;
 	if (!**line && !nb_bytes)
 		return (0);
 	else

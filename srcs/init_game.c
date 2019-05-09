@@ -7,11 +7,13 @@ int	get_player_id(t_filler *filler)
 
 	line = NULL;
 	i = 0;
+	dprintf(2, "start get player id line is :%s|%p\n", line, line);
 	if (get_next_line(0, &line) <= 0)
 	{
 		ft_memdel((void**)&line);
 		return (0);
 	}
+	dprintf(2, "start get player id after gnl line is :%s|%p\n", line, line);
 	if ((ft_strncmp(line, "$$$ exec p", 10)) && (line[12] != ':'))
 		return (0);
 	if (line[14] == '[')
@@ -28,7 +30,9 @@ int	get_player_id(t_filler *filler)
 	}
 	else
 		return (0);
+	dprintf(2, "end player id before memdel line is :%s|%p\n", line, line);
 	ft_memdel((void**)&line);
+	dprintf(2, "end player id line is :%s|%p\n", line, line);
 	return (1);
 }
 
@@ -39,11 +43,13 @@ int  get_map_size(t_filler *filler)
 
 	i = 0;
 	line = NULL;
+	dprintf(2, "start get map  line is :%s|%p\n", line, line);
 	if (get_next_line(0, &line) <= 0)
 	{
 		ft_memdel((void**)&line);
 		return (0);
 	}
+	dprintf(2, "start get map after gnl  line is :%s|%p\n", line, line);
 	filler->data = ft_strdup(line);
 	if (ft_strncmp(line, "Plateau ", 8)
 		|| !(filler->map.height = ft_atoi(line + 8)))
@@ -54,7 +60,9 @@ int  get_map_size(t_filler *filler)
 	i += ft_digitcount(filler->map.width);
 	if (line[8 + i] != ':')
 		return (0);
+	dprintf(2, "end get map before memdel line is :%s|%p\n", line, line);
 	ft_memdel((void**)&line);
+	dprintf(2, "end get map line is :%s|%p\n", line, line);
 	return (1);
 }
 
@@ -65,8 +73,13 @@ int	get_piece_size(t_filler *filler)
 
 	i = 0;
 	line = NULL;
+	dprintf(2, "start get piece  line is :%s|%p\n", line, line);
 	if (get_next_line(0, &line) <= 0)
+	{
+		ft_memdel((void**)&line);
 		return (0);
+	}
+	dprintf(2, "start get piece after gnl line is :%s|%p\n", line, line);
 	if (ft_strncmp(line, "Piece ", 6)
 		|| (!(filler->piece.height = ft_atoi(line + 6))))
 		return (0);
@@ -76,7 +89,9 @@ int	get_piece_size(t_filler *filler)
 	i += ft_digitcount(filler->piece.width);
 	if (line[6 + i] != ':')
 		return (0);
+	dprintf(2, "end get piece line is :%s|%p\n", line, line);
 	ft_memdel((void**)&line);
+	dprintf(2, "end get piece after memdel line is :%s|%p\n", line, line);
 	return (1);
 }
 
@@ -84,11 +99,13 @@ int  init_map(t_filler *filler)
 {
     int i;
 
-    filler->map.board = (char**)ft_memalloc(sizeof(char*) * filler->map.height);
+    if (!(filler->map.board = (char**)ft_memalloc(sizeof(char*) * filler->map.height)))
+		return (0);
     i = 0;
     while (i < filler->map.height)
     {
-        filler->map.board[i] = (char*)ft_memalloc(sizeof(char) * filler->map.width + 1);
+        if (!(filler->map.board[i] = (char*)ft_memalloc(sizeof(char) * filler->map.width + 1)))
+			return (0);
         i++;
     }
     return (1);
@@ -98,11 +115,13 @@ int		init_piece(t_filler *filler)
 {
 	int i;
 
-	filler->piece.square = (char**)ft_memalloc(sizeof(char*) * filler->piece.height);
+	if (!(filler->piece.square = (char**)ft_memalloc(sizeof(char*) * filler->piece.height)))
+		return (0);
 	i = 0;
 	while (i < filler->piece.height)
 	{
-		filler->piece.square[i] = (char*)ft_memalloc(sizeof(char) * filler->piece.width + 1);
+		if (!(filler->piece.square[i] = (char*)ft_memalloc(sizeof(char) * filler->piece.width + 1)))
+			return (0);
 		i++;
 	}
 	return (1);

@@ -43,7 +43,7 @@ int		game_end(t_filler *filler, int end)
 	else
 	{
 		free_struct(filler);
-		dprintf(2, "0 0\n");
+		ft_putstr("0 0\n");
 	}
 	return (end);
 }

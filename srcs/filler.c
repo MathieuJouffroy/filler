@@ -39,3 +39,8 @@ int main(void)
 	start_game(&filler);
 	return (0);	
 }
+
+
+__attribute__((destructor)) int end (){
+while(1);
+};

@@ -34,6 +34,7 @@ void	free_map(t_map *map)
 	map->board = NULL;
 	map->width = 0;
 	map->height = 0;
+	map->size = 0;
 }
 
 void	free_struct(t_filler *filler)

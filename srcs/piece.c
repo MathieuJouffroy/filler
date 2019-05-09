@@ -37,7 +37,8 @@ int		fill_piece(t_filler *filler)
 			ft_memdel((void**)&line);
 			return (0);
 		}
-		filler->piece.square[i] = line;
+		ft_strcpy(filler->piece.square[i], line);
+		ft_memdel((void**)&line);
 		i++;
 	}
 	return (1);
