@@ -104,6 +104,7 @@ void	print_map(t_filler *filler);
 void	print_pos(t_filler *filler);
 void	print_piece(t_filler *filler);
 void	free_map(t_map *map);
+//void	free_map(t_filler *filler);
 void	free_struct(t_filler *filler);
 
 int		check_good(t_filler *filler);
@@ -115,6 +116,8 @@ int		start_game(t_filler *filler);
 int		game_end(t_filler *filler, int end);
 int		my_pos(t_filler *filler, t_point *ref);
 int	check_overflow(t_filler *filler, int x, int y);
+int		chek_map_line_nb(char *str);
+int		check_map_first_line(char *str);
 
 
 #endif

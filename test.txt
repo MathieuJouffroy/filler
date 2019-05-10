@@ -1,0 +1,31 @@
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/open3.rb:211: warning: Insecure world writable dir /sgoinfre/goinfre/Perso in PATH, mode 040777
+map->board[i] is : ...OO.O.....OOO..|0x7ff8c5c026d0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOO.OOOOOOOOOOOO|0x7ff8c5c02780
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOOOOOOOOO|0x7ff8c5c027a0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : O.OOOOOOOOOOOOOOO|0x7ff8c5c027c0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : OOOOOOOOOOOOOOOOO|0x7ff8c5c027e0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOOOOOOOOO|0x7ff8c5c02800
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOOOOOOOOO|0x7ff8c5c02820
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOOOOOOOOO|0x7ff8c5c02840
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOOOOOOOOO|0x7ff8c5c02860
+after free map->board[i] is : (null)|0x0
+map->board[i] is : OOOOOOOOOXXXXXXOO|0x7ff8c5c02880
+after free map->board[i] is : (null)|0x0
+map->board[i] is : OOOOOOOOOXXXXXXXO|0x7ff8c5c028a0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : OOOOOOOOOXXXXXXXO|0x7ff8c5c028c0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : OOOOOOOOOXXXXXXOO|0x7ff8c5c028e0
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOXXXXXXXO|0x7ff8c5c02900
+after free map->board[i] is : (null)|0x0
+map->board[i] is : .OOOOOOOOOOXXX.XO|0x7ff8c5c02920
+after free map->board[i] is : (null)|0x0

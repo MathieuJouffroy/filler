@@ -25,10 +25,13 @@ void	free_map(t_map *map)
 	int i;
 
 	i = 0;
-	if (map->board != NULL)
+	if (map->height)
 	{
 		while (i < map->height)
-			free(map->board[i++]);
+		{
+			ft_strdel(&map->board[i]);
+			i++;
+		}
 		free(map->board);
 	}
 	map->board = NULL;

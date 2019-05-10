@@ -20,6 +20,44 @@ int	check_map_data(t_filler *filler)
 	return (1);
 }
 
+int		check_map_first_line(char *str)
+{
+	int i;
+	char *tmp;
+
+	i = 0;
+	tmp = str;
+	while (tmp[i] != '\0')
+	{
+		if (i < 4 && tmp[i] != ' ')
+			return (0);
+		if (i > 4 && !ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		chek_map_line_nb(char *str)
+{
+	int i;
+	char *tmp;
+
+	i = 0;
+	tmp = str;
+	while (tmp[i] != '\0')
+	{
+		if (i < 3 && !(ft_isdigit(tmp[i])))
+			return (0);
+		if (i == 3 && tmp[i] != ' ')
+			return (0);
+		if (i > 3 && tmp[i] != '.' && tmp[i] != 'O' && tmp[i] != 'X')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int		fill_map(t_filler *filler)
 {
 	int		i;
@@ -28,7 +66,12 @@ int		fill_map(t_filler *filler)
 	line = NULL;
 	i = 0;
 	if (get_next_line(0, &line) <= 0)
-    	return (0);
+	{
+		ft_memdel((void**)&line);
+		return (0);
+	}
+	if (!check_map_first_line(line))
+		return (0);
 	ft_memdel((void**)&line);
 	while (i < filler->map.height)
 	{
@@ -37,7 +80,9 @@ int		fill_map(t_filler *filler)
 			ft_memdel((void**)&line);
     		return (0);
 		}
-		filler->map.board[i] = ft_strsub(line, 4, filler->map.width + 1);
+		if (!chek_map_line_nb(line))
+			return (0);
+		ft_strncpy(filler->map.board[i], (line + 4), filler->map.width + 1);
 		ft_memdel((void**)&line);
 		i++;
 	}
