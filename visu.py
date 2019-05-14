@@ -4,8 +4,9 @@ import sys
 import os
 from tkinter import ttk
 import tkinter
+import time
 
-file = open("vlogs.txt", "w")
+file = open("summary.txt", "w")
 debug = True
 box_w = 10
 box_h = 10
@@ -34,6 +35,7 @@ def close(event):
 class Player:
 	def __init__(self, number):
 		line = read_until('p' + str(number))
+		# split returns list of strings
 		self.name = line.split(' ')[4].split('/')[-1].split('.filler')[0]
 		self.score = 0
 
@@ -63,6 +65,7 @@ class Plateau:
 					'X': 3,
 					'x': 4
 				}[c]
+
 		self.boards.append(board)
 
 	def set_size(self, x, y):
@@ -87,11 +90,11 @@ class Game:
 		self.finished = False
 		self.init_root()
 		self.matrix = [[0 for x in range(self.plateau.size_x)] for y in range(self.plateau.size_y)]
-		self.label1 = tkinter.Label(self.root, text=self.player1.generate_label_text(), foreground='#08396B', background='black', font='Georgia 18 bold')
+		self.label1 = tkinter.Label(self.root, text=self.player1.generate_label_text(), foreground='cyan', background='black', font='Georgia 18 bold')
 		self.label1.pack(padx=30, pady=5)
-		self.label2 = tkinter.Label(self.root, text=self.player2.generate_label_text(), foreground='#571945', background='black', font='Georgia 18 bold')
+		self.label2 = tkinter.Label(self.root, text=self.player2.generate_label_text(), foreground='#E94992', background='black', font='Georgia 18 bold')
 		self.label2.pack(padx=30, pady=5)
-		self.canvas = tkinter.Canvas(self.root, width=self.plateau.size_x * box_w + 3, height=self.plateau.size_y * box_h + 3)
+		self.canvas = tkinter.Canvas(self.root, width=self.plateau.size_x * box_w + 1, height=self.plateau.size_y * box_h + 1)
 		self.label1.pack()
 		self.label2.pack()
 		self.canvas.pack()
@@ -115,7 +118,7 @@ class Game:
 				x1 = x0 + box_w
 				y1 = y0 + box_h
 				fill = 'black'
-				self.matrix[i][j] = self.canvas.create_rectangle(x0, y0, x1, y1, fill='#1E1860', outline='black', width=1)
+				self.matrix[i][j] = self.canvas.create_rectangle(x0, y0, x1, y1, fill='#1E1860', outline='#1E1860', width=0.5)
 
 	def set_window_colors(self):
 		board = self.plateau.get_board()
@@ -125,10 +128,10 @@ class Game:
 				fill = 'black'
 				fill = {
 					0: 'black',
-					1: '#08396B',
-					2: '#649EBC',
-					3: '#571945',
-					4: '#99728D'
+					1: 'cyan',
+					2: '#006EFF',
+					3: '#E94992',
+					4: '#600352'
 				}[el]
 				self.canvas.itemconfig(self.matrix[i][j], fill=fill)
 
@@ -164,6 +167,10 @@ class Game:
 		self.draw()
 		self.root.title("Filler game")
 		self.root.configure(background='black')
+		if (self.plateau.size_x < 20):
+			self.root.geometry("300x300")
+		elif ((self.plateau.size_x > 20) and (self.plateau.size_x < 90) ):
+			self.root.geometry("500x400")
 		self.root.after(100, self.routine)
 		self.root.mainloop()
 
