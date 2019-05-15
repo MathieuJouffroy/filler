@@ -7,13 +7,11 @@ int	get_player_id(t_filler *filler)
 
 	line = NULL;
 	i = 0;
-	//dprintf(2, "start get player id line is :%s|%p\n", line, line);
 	if (get_next_line(0, &line) <= 0)
 	{
 		ft_memdel((void**)&line);
 		return (0);
 	}
-	//dprintf(2, "start get player id after gnl line is :%s|%p\n", line, line);
 	if ((ft_strncmp(line, "$$$ exec p", 10)) && (line[12] != ':'))
 		return (0);
 	if (line[14] == '[')
@@ -30,9 +28,7 @@ int	get_player_id(t_filler *filler)
 	}
 	else
 		return (0);
-	//dprintf(2, "end player id before memdel line is :%s|%p\n", line, line);
 	ft_memdel((void**)&line);
-	//dprintf(2, "end player id line is :%s|%p\n", line, line);
 	return (1);
 }
 
@@ -43,13 +39,11 @@ int  get_map_size(t_filler *filler)
 
 	i = 0;
 	line = NULL;
-	//dprintf(2, "start get map  line is :%s|%p\n", line, line);
 	if (get_next_line(0, &line) <= 0)
 	{
 		ft_memdel((void**)&line);
 		return (0);
 	}
-	//dprintf(2, "start get map after gnl  line is :%s|%p\n", line, line);
 	filler->data = ft_strdup(line);
 	if (ft_strncmp(line, "Plateau ", 8)
 		|| !(filler->map.height = ft_atoi(line + 8)))

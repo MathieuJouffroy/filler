@@ -71,7 +71,7 @@ int		fill_map(t_filler *filler)
 		return (0);
 	}
 	if (!check_map_first_line(line))
-		return (0);
+		return (errors(filler, 9));
 	ft_memdel((void**)&line);
 	while (i < filler->map.height)
 	{
@@ -81,7 +81,7 @@ int		fill_map(t_filler *filler)
     		return (0);
 		}
 		if (!chek_map_line_nb(line))
-			return (0);
+			return (errors(filler, 9));
 		ft_strncpy(filler->map.board[i], (line + 4), filler->map.width + 1);
 		ft_memdel((void**)&line);
 		i++;
@@ -94,10 +94,10 @@ int		parse_map(t_filler *filler)
 	if (filler->init_m == 1)
 	{
 		if (!check_map_data(filler))
-			return (errors(filler, 3));
+			return (errors(filler, 7));
 	}
 	if (!fill_map(filler))
-		return (errors(filler, 5));
+		return (errors(filler, 3));
 	filler->init_m = 1;
 	return (1);
 }

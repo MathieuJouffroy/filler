@@ -120,4 +120,6 @@ int		chek_map_line_nb(char *str);
 int		check_map_first_line(char *str);
 
 
+int		protectedgnl(char *line);
+
 #endif

@@ -43,7 +43,8 @@ void	free_map(t_map *map)
 void	free_struct(t_filler *filler)
 {
 	free_map(&filler->map);
-	free_piece(&filler->piece);
+	if (filler->piece.height)
+		free_piece(&filler->piece);
 	if (filler->data)
 		free(filler->data);
   	filler->data = NULL;
@@ -56,16 +57,19 @@ int	errors(t_filler *filler, int i)
 	if (i == 1)
 		dprintf(2, "usage : Plateau MAP_ROW MAP_COL:\n");
 	if (i == 2)
-		dprintf(2, "usage : Piece PIECE_ROW PIECE_COL:\n");
+		dprintf(2, "Plateau : Memory Allocation Error\n");
 	if (i == 3)
-		dprintf(2, "usage : Plateau size can't change during game.\n");
+		dprintf(2, "Plateau Format Error.\n");
 	if (i == 4)
-		dprintf(2, "Piece format error.\n");
+		dprintf(2, "usage : Piece PIECE_ROW PIECE_COL:\n");
 	if (i == 5)
-		dprintf(2, "Map format error.\n");
+		dprintf(2, "Piece : Memory Allocation Error.\n");
 	if (i == 6)
-		dprintf(2, "First map line error.\n");
-	if (i == 2 || i == 3 || i == 4 || i == 5 || i == 6)
-		free_struct(filler);
+		dprintf(2, "Piece Format Error.\n");
+	if (i == 7)
+		dprintf(2, "usage : Plateau size can't change during game.\n");
+	if (i == 8)
+		dprintf(2, "Plateau : line Format Error.\n");
+	free_struct(filler);
 	return (0);
 }

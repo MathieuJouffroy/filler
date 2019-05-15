@@ -44,9 +44,9 @@ class Menu:
 		self.listmap(map)
 		label1 = tkinter.Label(self.root, text='My Player', foreground='cyan', background='#0E0019')
 		label1.grid(padx=50, row=0, column=0)
-		label2 = tkinter.Label(self.root, text='Select opponent', foreground='#E94992', background='#0E0019')
+		label2 = tkinter.Label(self.root, text='Opponents', foreground='#E94992', background='#0E0019')
 		label2.grid(padx=50, row=0, column=2)
-		label3 = tkinter.Label(self.root, text='Select Map', foreground='#7FF204', background='#0E0019')
+		label3 = tkinter.Label(self.root, text='Maps', foreground='#7FF204', background='#0E0019')
 		label3.grid(padx=50, row=0, column=1)
 		warn = tkinter.Label(self.root, foreground='red', background='#0E0019')
 		warn.grid(padx=50, row=100, column=1)
@@ -72,19 +72,19 @@ class Menu:
 	def listp1(self, me):
 		lst = self.my_player()
 		for x, item in enumerate(lst, start=1):
-			button = tkinter.Button(self.root, text=item, foreground='#5D26F2', background='black', command=lambda arg=item: get_my_player(me, arg, self))
+			button = tkinter.Button(self.root, text=item, foreground='#5D26F2', bg='#FF9472', command=lambda arg=item: get_my_player(me, arg, self))
 			button.grid(padx=50, row=x, column=0, sticky="NSEW")
 
 	def listp2(self, opponent):
 		lst = self.opponents()
 		for x, item in enumerate(lst, start=1):
-			button = tkinter.Button(self.root, text=item, foreground='#5D26F2', background='black', command=lambda arg=item: get_opponent(opponent, arg, self))
+			button = tkinter.Button(self.root, text=item, foreground='#5D26F2', background='#FF9472', command=lambda arg=item: get_opponent(opponent, arg, self))
 			button.grid(padx=50, row=x, column=2, sticky="NSEW")
 
 	def listmap(self, map):
 		lst = self.map_number()
-		for x, item in enumerate(lst, start=1):
-			button = tkinter.Button(self.root, text=item, foreground='#5D26F2', background='black', command=lambda arg=item: get_map(map, arg, self))
+		for x, item in enumerate(lst, start=1):		
+			button = tkinter.Button(self.root, text=item, foreground='#5D26F2', background='#FF9472', command=lambda arg=item: get_map(map, arg, self))
 			button.grid(padx=50, row=x, column=1, sticky="NSEW")
 
 	def opponents(self):

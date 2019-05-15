@@ -73,13 +73,13 @@ void	get_point_pos(t_filler *filler)
 int		parse_piece(t_filler *filler)
 {
 	if (!get_piece_size(filler))
-		return (errors(filler, 2));
-	if (!init_piece(filler))
-		return (0);
-	if (!fill_piece(filler))
 		return (errors(filler, 4));
+	if (!init_piece(filler))
+		(errors(filler, 5));
+	if (!fill_piece(filler))
+		return (errors(filler, 6));
 	if (!(filler->piece.p = (t_point*)ft_memalloc(sizeof(t_point) * filler->piece.p_cnt)))
-		return (0);
+		(errors(filler, 5));
 	get_point_pos(filler);
 	return (1);
 }

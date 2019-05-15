@@ -7,7 +7,7 @@ int		init_game(t_filler *filler)
 	if (!get_map_size(filler))
 		return (errors(filler, 1));
 	if (!init_map(filler))
-		return (0);
+		return (errors(filler, 2));
 	filler->size = filler->map.width * filler->map.height;
 	filler->pnt.min = filler->size;
 	return (1);
@@ -41,6 +41,6 @@ int main(void)
 }
 
 
-__attribute__((destructor)) int end (){
+/*__attribute__((destructor)) int end (){
 while(1);
-};
+};*/
