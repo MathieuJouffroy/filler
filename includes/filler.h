@@ -6,7 +6,7 @@
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 18:26:51 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/05/31 19:44:53 by mjouffro         ###   ########.fr       */
+/*   Updated: 2019/05/31 20:01:11 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int				init_piece(t_filler *filler);
 */
 
 int				check_map_data(t_filler *filler);
+int				check_map_first_line(char *str);
+int				chek_map_line_nb(char *str);
 int				fill_map(t_filler *filler);
 int				parse_map(t_filler *filler);
 
@@ -89,6 +91,7 @@ void			get_point_pos(t_filler *filler);
 int				is_pnt_placeable(t_filler *filler, t_point *to_test,
 								t_point *ref);
 int				check_piece_pnts(t_filler *filler, t_point *ref);
+int				check_overflow(t_filler *filler, int x, int y);
 int				check_around_ref(t_filler *filler, t_point *ref);
 void			free_piece(t_piece *piece);
 
@@ -103,32 +106,29 @@ double			piece_pnt_min_dist(t_filler *filler, t_point *ref,
 									t_point *bot);
 
 /*
-**-------------------------------- FILLER ---------------------------------
+**--------------------------------- GAME -------------------------------------
 */
 
-int				main(void);
-int				get_info(t_filler *filler);
 int				play(t_filler *filler);
-int				errors(t_filler *filler, int i);
-
+int				game_end(t_filler *filler, int end);
 void			print_piece_pos(t_filler *filler);
-void			print_map(t_filler *filler);
-void			print_pos(t_filler *filler);
-void			print_piece(t_filler *filler);
-void			free_map(t_map *map);
-void			free_struct(t_filler *filler);
 
-int				check_good(t_filler *filler);
-
-int				get_info(t_filler *filler);
+/*
+**-------------------------------- FILLER ------------------------------------
+*/
 
 int				init_game(t_filler *filler);
 int				start_game(t_filler *filler);
-int				game_end(t_filler *filler, int end);
-int				my_pos(t_filler *filler, t_point *ref);
-int				check_overflow(t_filler *filler, int x, int y);
-int				chek_map_line_nb(char *str);
-int				check_map_first_line(char *str);
+int				main(void);
+
+/*
+**--------------------------------- FREE -------------------------------------
+*/
+
+int				errors(t_filler *filler, int i);
 int				gnl_exit(char *line);
+void			free_map(t_map *map);
+void			free_piece(t_piece *piece);
+void			free_struct(t_filler *filler);
 
 #endif
