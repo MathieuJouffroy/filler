@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mjouffro <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 17:13:59 by mjouffro          #+#    #+#              #
-#    Updated: 2018/11/28 17:03:11 by mjouffro         ###   ########.fr        #
+#    Updated: 2019/05/31 18:44:38 by mjouffro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,31 +149,23 @@ $(OBJ_PATH)		:
 					@mkdir $(OBJ_PATH) 2> /dev/null || true
 
 $(NAME)			:	$(OBJ)
-					@echo "-------------------------------------------------------------"
-					@echo "|                                                           |"
-					@echo "|                       compilation :                       |"
-					@echo "|                          libft                            |"
-					@echo "|                                                           |"
 					@ar rc $(NAME)  $(OBJ)
 					@ranlib $(NAME)
-					@echo "|                       make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)                     |"
-					@echo "-------------------------------------------------------------"
+					@echo "Make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
 
 $(OBJ_PATH)/%.o: 	$(SRC_PATH)/%.c
 					$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 # Clean rules
 clean			:
-					@echo "-------------------------------------------------------------"
 					@rm -rf $(OBJ_PATH)
-					@echo "|                    Removes all .o & $(OBJ_PATH) $(LOG_GREEN) ✓ $(LOG_NOCOLOR)              |"
-					@echo "-------------------------------------------------------------"
+					@echo "Removes all .o & $(OBJ_PATH) $(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
+
 
 fclean			: 	clean
-					@echo "-------------------------------------------------------------"
 					@rm -f $(NAME)
-					@echo "|                    Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)                      |"
-					@echo "-------------------------------------------------------------"
+					@echo "Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
+
 norme:
 					@norminette $(SRC)
 					@norminette $(INC_PATH)/

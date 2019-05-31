@@ -24,7 +24,11 @@ def start_game(p1, p2, mp, self, warn):
 		cmd = "./filler_vm -f maps/"+mp+" -p1 ./"+p1+" -p2 players/"+p2+" | python visu.py"
 		os.system(cmd)
 		with open('filler.trace', 'r') as file:
-			line = file.read().split('\n')[1]
+			line = file.read().split('\n')
+			if (line[1] == "X: error on input"):
+				line = line[2]
+			else:
+				line = line[1]
 		line = line.replace("players/", "")
 		line = line.replace(".filler", "")
 		warn['text'] = line
@@ -33,24 +37,24 @@ class Menu:
 	def __init__(self):
 		self.finished = False
 		self.init_root()
-		me = tkinter.Label(self.root, foreground='cyan', background='#0E0019')
+		me = tkinter.Label(self.root, foreground='cyan', background='#21013a')
 		me.grid(padx=50, row=10, column=0)
-		opponent = tkinter.Label(self.root, foreground='#E94992', background='#0E0019')
+		opponent = tkinter.Label(self.root, foreground='#E94992', background='#21013a')
 		opponent.grid(padx=50, row=10, column=2)
-		map = tkinter.Label(self.root, foreground='#7FF204', background='#0E0019')
+		map = tkinter.Label(self.root, foreground='#7FF204', background='#21013a')
 		map.grid(padx=50, row=10, column=1)
 		self.listp1(me)
 		self.listp2(opponent)
 		self.listmap(map)
-		label1 = tkinter.Label(self.root, text='My Player', foreground='cyan', background='#0E0019')
+		label1 = tkinter.Label(self.root, text='My Player', foreground='cyan', background='#21013a')
 		label1.grid(padx=50, row=0, column=0)
-		label2 = tkinter.Label(self.root, text='Opponents', foreground='#E94992', background='#0E0019')
+		label2 = tkinter.Label(self.root, text='Opponents', foreground='#E94992', background='#21013a')
 		label2.grid(padx=50, row=0, column=2)
-		label3 = tkinter.Label(self.root, text='Maps', foreground='#7FF204', background='#0E0019')
+		label3 = tkinter.Label(self.root, text='Maps', foreground='#7FF204', background='#21013a')
 		label3.grid(padx=50, row=0, column=1)
-		warn = tkinter.Label(self.root, foreground='red', background='#0E0019')
+		warn = tkinter.Label(self.root, foreground='red', background='#21013a')
 		warn.grid(padx=50, row=100, column=1)
-		go = tkinter.Button(self.root, text='Play', foreground='#7FF204', background='#0E0019', command=lambda: start_game(me['text'], opponent['text'], map['text'], self, warn))
+		go = tkinter.Button(self.root, text='Play', foreground='#7FF204', background='#21013a', command=lambda: start_game(me['text'], opponent['text'], map['text'], self, warn))
 		go.grid(padx=50, row=50, column=1)
 
 
@@ -63,7 +67,7 @@ class Menu:
 		self.running = True
 		self.root.title("Play Filler Game")
 		self.root.geometry("610x300")
-		self.root.configure(background= '#0E0019')
+		self.root.configure(background= '#21013a')
 		self.root.mainloop()
 
 	def stop(self):

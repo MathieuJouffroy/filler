@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   piece.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/15 18:29:29 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/05/31 19:07:41 by mjouffro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
-int	valid_line(t_filler *filler, char *line)
+int			valid_line(t_filler *filler, char *line)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (line[i] != '\0')
@@ -18,25 +30,19 @@ int	valid_line(t_filler *filler, char *line)
 	return (1);
 }
 
-int		fill_piece(t_filler *filler)
+int			fill_piece(t_filler *filler)
 {
-	int 	i;
+	int		i;
 	char	*line;
-	
+
 	line = NULL;
 	i = 0;
 	while (i < filler->piece.height)
 	{
 		if (get_next_line(0, &line) <= 0)
-		{
-			ft_memdel((void**)&line);
-    		return (0);
-		}
+			return (gnl_exit(line));
 		if (!valid_line(filler, line))
-		{
-			ft_memdel((void**)&line);
-			return (0);
-		}
+			return (gnl_exit(line));
 		ft_strcpy(filler->piece.square[i], line);
 		ft_memdel((void**)&line);
 		i++;
@@ -44,11 +50,11 @@ int		fill_piece(t_filler *filler)
 	return (1);
 }
 
-void	get_point_pos(t_filler *filler)
+void		get_point_pos(t_filler *filler)
 {
-	int i;
-	int j;
-	int p_cnt;
+	int		i;
+	int		j;
+	int		p_cnt;
 
 	i = 0;
 	p_cnt = 0;
@@ -70,7 +76,7 @@ void	get_point_pos(t_filler *filler)
 	}
 }
 
-int		parse_piece(t_filler *filler)
+int			parse_piece(t_filler *filler)
 {
 	if (!get_piece_size(filler))
 		return (errors(filler, 4));
@@ -78,8 +84,9 @@ int		parse_piece(t_filler *filler)
 		(errors(filler, 5));
 	if (!fill_piece(filler))
 		return (errors(filler, 6));
-	if (!(filler->piece.p = (t_point*)ft_memalloc(sizeof(t_point) * filler->piece.p_cnt)))
-		(errors(filler, 5));
+	if (!(filler->piece.p = (t_point*)ft_memalloc(sizeof(t_point)
+		* filler->piece.p_cnt)))
+		return (errors(filler, 5));
 	get_point_pos(filler);
 	return (1);
 }

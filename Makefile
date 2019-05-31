@@ -73,14 +73,8 @@ $(OBJ_PATH)		:
 
 $(NAME)			:	$(OBJ)
 					@make -C $(LIB)
-					@echo "-------------------------------------------------------------"
-					@echo "|                                                           |"
-					@echo "|                       compilation :                       |"
-					@echo "|                          filler                           |"
-					@echo "|                                                           |"
 					@$(CC) $(CFLAGS) $(CPPFLAGS) -g -o $@ $^ $(LIB)libft.a
-					@echo "|                   make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)                 |"
-					@echo "-------------------------------------------------------------"
+					@echo "Make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
 
 $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 					$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -88,14 +82,10 @@ $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 # Clean rules
 clean			:
 					@cd libft && $(MAKE) clean
-					@echo "-------------------------------------------------------------"
 					@rm -rf $(OBJ_PATH)
-					@echo "|                    Removes all .o & $(OBJ_PATH) $(LOG_GREEN) ✓ $(LOG_NOCOLOR)              |"
-					@echo "-------------------------------------------------------------"
+					@echo "Removes all .o & $(OBJ_PATH) $(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
 
 fclean			: 	clean
 					@cd libft && $(MAKE) fclean
-					@echo "-------------------------------------------------------------"
 					@rm -f $(NAME)
-					@echo "|                    Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)              |"
-					@echo "-------------------------------------------------------------"
+					@echo "Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"

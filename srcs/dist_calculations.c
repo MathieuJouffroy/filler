@@ -6,27 +6,42 @@
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 14:30:05 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/04/26 15:28:21 by mjouffro         ###   ########.fr       */
+/*   Updated: 2019/05/31 19:40:17 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <math.h>
 
-double		min_dist(t_filler *filler, t_point *ref, t_point *test, t_point *bot)
+/*
+** diagonal = √(w^2 + h^2) = sqrt(power2(w) + power2(h))
+** w = bot->x - new_pnt_x
+** h = bot->y - new_pnt_y
+** new_pnt_x / new_pnt_y = (coord of the pnt of new piece on which
+** 						I am) - (coord of the pnt of the new piece i am
+** 						placing on a pnt of my board pieces) + (coord of
+**						the map piece pnt i am placing the new piece on)
+*/
+
+double		min_dist(t_filler *filler, t_point *ref, t_point *test,
+			t_point *bot)
 {
-	int i;
-	double min;
-	double res;
+	int		i;
+	int		new_pnt_x;
+	int		new_pnt_y;
+	double	min;
+	double	res;
 
 	i = 0;
 	min = filler->pnt.min;
+	new_pnt_x = filler->piece.p[i].x - test->x + ref->x;
+	new_pnt_y = filler->piece.p[i].y - test->y + ref->y;
 	while (i < filler->piece.p_cnt)
 	{
 		if (!(i == test->i))
 		{
-			res = ft_pow((bot->x - (filler->piece.p[i].x - test->x + ref->x)), 2);
-			res += ft_pow((bot->y - (filler->piece.p[i].y - test->y + ref->y)), 2);
+			res = ft_pow((bot->x - new_pnt_x), 2);
+			res += ft_pow((bot->y - new_pnt_y), 2);
 			res = ft_sqrt(res);
 			min = (res < min) ? res : min;
 			i++;
@@ -37,7 +52,7 @@ double		min_dist(t_filler *filler, t_point *ref, t_point *test, t_point *bot)
 	return (min);
 }
 
-double	piece_pnt_min_dist(t_filler *filler, t_point *ref, t_point *bot)
+double		piece_pnt_min_dist(t_filler *filler, t_point *ref, t_point *bot)
 {
 	t_point test;
 	double	min;
@@ -53,7 +68,7 @@ double	piece_pnt_min_dist(t_filler *filler, t_point *ref, t_point *bot)
 		if (is_pnt_placeable(filler, &test, ref))
 		{
 			res = min_dist(filler, ref, &test, bot);
-			if (res < filler->piece.p[test.i].min) 
+			if (res < filler->piece.p[test.i].min)
 				filler->piece.p[test.i].min = res;
 			min = (res < min) ? res : min;
 		}
@@ -62,14 +77,14 @@ double	piece_pnt_min_dist(t_filler *filler, t_point *ref, t_point *bot)
 	return (min);
 }
 
-int		get_min_dist(t_filler *filler, t_point *ref)
+int			get_min_dist(t_filler *filler, t_point *ref)
 {
 	double	min;
 	t_point	bot;
 
 	min = filler->size;
-	bot.y = 0;
-	while (bot.y < filler->map.height)
+	bot.y = -1;
+	while (++bot.y < filler->map.height)
 	{
 		bot.x = 0;
 		while (bot.x < filler->map.width)
@@ -87,7 +102,6 @@ int		get_min_dist(t_filler *filler, t_point *ref)
 			}
 			bot.x++;
 		}
-		bot.y++;
 	}
 	return (1);
 }

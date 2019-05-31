@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/15 18:29:13 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/05/31 19:28:06 by mjouffro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
-int		play(t_filler *filler)
+int			play(t_filler *filler)
 {
 	t_point	ref;
 	int		end;
@@ -13,23 +25,22 @@ int		play(t_filler *filler)
 		while (ref.x < filler->map.width)
 		{
 			if ((filler->map.board[ref.y][ref.x] == filler->me)
-			|| (filler->map.board[ref.y][ref.x] == ft_tolower(filler->me)))
+				|| (filler->map.board[ref.y][ref.x] == ft_tolower(filler->me)))
 			{
 				if (check_around_ref(filler, &ref))
 				{
 					if (check_piece_pnts(filler, &ref))
 						end = get_min_dist(filler, &ref) ? 1 : 0;
-				}	
+				}
 			}
-			ref.x++;	
+			ref.x++;
 		}
 		ref.y++;
 	}
 	return (game_end(filler, end));
 }
 
-
-int		game_end(t_filler *filler, int end)
+int			game_end(t_filler *filler, int end)
 {
 	if (end == 1)
 	{
@@ -48,12 +59,12 @@ int		game_end(t_filler *filler, int end)
 	return (end);
 }
 
-void	print_piece_pos(t_filler *filler)
+void		print_piece_pos(t_filler *filler)
 {
-	int i;
-	int cnt;
-	int x;
-	int y;
+	int		i;
+	int		cnt;
+	int		x;
+	int		y;
 
 	i = 0;
 	cnt = 0;

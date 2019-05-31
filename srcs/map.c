@@ -1,29 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/15 18:29:23 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/05/31 19:01:21 by mjouffro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
-int	check_map_data(t_filler *filler)
+int			check_map_data(t_filler *filler)
 {
-	char *line;
+	char	*line;
 
 	line = NULL;
 	if (get_next_line(0, &line) <= 0)
-	{
-		ft_memdel((void**)&line);
-		return (0);
-	}
+		return (gnl_exit(line));
 	if (ft_strcmp(filler->data, line))
-	{
-		ft_memdel((void**)&line);
-		return (0);
-	}
+		return (gnl_exit(line));
 	ft_memdel((void**)&line);
 	filler->pnt.min = filler->size;
 	return (1);
 }
 
-int		check_map_first_line(char *str)
+int			check_map_first_line(char *str)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	tmp = str;
@@ -38,10 +44,10 @@ int		check_map_first_line(char *str)
 	return (1);
 }
 
-int		chek_map_line_nb(char *str)
+int			chek_map_line_nb(char *str)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	tmp = str;
@@ -58,30 +64,24 @@ int		chek_map_line_nb(char *str)
 	return (1);
 }
 
-int		fill_map(t_filler *filler)
+int			fill_map(t_filler *filler)
 {
 	int		i;
-	char *line;
+	char	*line;
 
 	line = NULL;
 	i = 0;
 	if (get_next_line(0, &line) <= 0)
-	{
-		ft_memdel((void**)&line);
-		return (0);
-	}
+		return (gnl_exit(line));
 	if (!check_map_first_line(line))
-		return (errors(filler, 9));
+		return (gnl_exit(line));
 	ft_memdel((void**)&line);
 	while (i < filler->map.height)
 	{
 		if (get_next_line(0, &line) <= 0)
-		{
-			ft_memdel((void**)&line);
-    		return (0);
-		}
+			return (gnl_exit(line));
 		if (!chek_map_line_nb(line))
-			return (errors(filler, 9));
+			return (gnl_exit(line));
 		ft_strncpy(filler->map.board[i], (line + 4), filler->map.width + 1);
 		ft_memdel((void**)&line);
 		i++;
@@ -89,7 +89,7 @@ int		fill_map(t_filler *filler)
 	return (1);
 }
 
-int		parse_map(t_filler *filler)
+int			parse_map(t_filler *filler)
 {
 	if (filler->init_m == 1)
 	{

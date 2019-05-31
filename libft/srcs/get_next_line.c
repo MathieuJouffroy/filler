@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/15 18:28:52 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/05/31 18:48:04 by mjouffro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static t_gnl	*get_file(const int fd, t_list **alst)
+static t_gnl		*get_file(const int fd, t_list **alst)
 {
-	t_list		*elem;
-	t_gnl		file;
+	t_list			*elem;
+	t_gnl			file;
 
 	elem = *alst;
 	while (elem)
@@ -23,9 +35,9 @@ static t_gnl	*get_file(const int fd, t_list **alst)
 
 static int			read_line(t_gnl *file)
 {
-	int			nb_bytes;
-	char		buff[BUFF_SIZE + 1];
-	char		*tmp;
+	int				nb_bytes;
+	char			buff[BUFF_SIZE + 1];
+	char			*tmp;
 
 	nb_bytes = 1;
 	while (nb_bytes > 0 && !ft_strchr(file->data, '\n'))
@@ -44,7 +56,7 @@ static int			read_line(t_gnl *file)
 
 static char			*update_line(char *str)
 {
-	char	*pos;
+	char			*pos;
 
 	if (!(pos = ft_strchr(str, '\n')))
 		return (ft_strdup(str));
@@ -54,8 +66,8 @@ static char			*update_line(char *str)
 
 static void			shift_line(char **data)
 {
-	char *tmp;
-	char *pos;
+	char			*tmp;
+	char			*pos;
 
 	tmp = *data;
 	if (!(pos = ft_strchr(tmp, '\n')))

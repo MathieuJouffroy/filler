@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/15 18:29:09 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/05/31 19:28:24 by mjouffro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 void	free_piece(t_piece *piece)
@@ -25,7 +37,7 @@ void	free_map(t_map *map)
 	int i;
 
 	i = 0;
-	if (map->height)
+	if (map->board != NULL)
 	{
 		while (i < map->height)
 		{
@@ -47,10 +59,16 @@ void	free_struct(t_filler *filler)
 		free_piece(&filler->piece);
 	if (filler->data)
 		free(filler->data);
-  	filler->data = NULL;
+	filler->data = NULL;
 }
 
-int	errors(t_filler *filler, int i)
+int		gnl_exit(char *line)
+{
+	ft_memdel((void**)&line);
+	return (0);
+}
+
+int		errors(t_filler *filler, int i)
 {
 	if (i == 0)
 		dprintf(2, "usage : $$$ exec pPLAYER_NUMBER : [PLAYER_NAME]\n");
