@@ -6,7 +6,7 @@
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:53:58 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/05/15 18:27:12 by mjouffro         ###   ########.fr       */
+/*   Updated: 2019/06/04 20:40:33 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,18 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <wchar.h>
+# include <limits.h>
+# include <float.h>
+# include <fcntl.h>
+# include <sys/types.h>
 # include "get_next_line.h"
+# include "ft_printf.h"
+# define ABS(Value)  (Value < 0) ? -Value : Value
+# define MAX(a, b)   a > b ? a : b
 
 typedef struct		s_list
 {

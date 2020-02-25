@@ -6,7 +6,7 @@
 #    By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 17:13:59 by mjouffro          #+#    #+#              #
-#    Updated: 2019/05/31 18:44:38 by mjouffro         ###   ########.fr        #
+#    Updated: 2019/06/04 20:40:01 by mjouffro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,12 @@ CPPFLAGS = -Iincludes
 
 SRC_PATH	= srcs
 
+PRINTF_PATH = ft_printf
+
+CONV_PATH 	= convs
+
+UTILS_PATH  = utils
+
 OBJ_PATH	= objs
 
 INC_PATH	= includes
@@ -31,80 +37,102 @@ LDLIBS		= -lft
 
 
 # SRCS && OBJS
-SRC_NAME 	=	ft_atoi.c					\
-				ft_bzero.c					\
-				ft_digitcount.c				\
-				ft_isalnum.c				\
-				ft_isalpha.c				\
-				ft_isascii.c				\
-				ft_isdigit.c				\
-				ft_isprint.c				\
-				ft_islower.c				\
-				ft_isupper.c				\
-				ft_iswhitespace.c			\
-				ft_itoa.c					\
-				ft_lstadd.c					\
-				ft_lstaddend.c				\
-				ft_lstdel.c					\
-				ft_lstdelone.c				\
-				ft_lstiter.c				\
-				ft_lstlast.c				\
-				ft_lstmap.c					\
-				ft_lstnew.c					\
-				ft_lstreverse.c				\
-				ft_lstsize.c				\
-				ft_memalloc.c				\
-				ft_memccpy.c				\
-				ft_memchr.c					\
-				ft_memcmp.c					\
-				ft_memcpy.c					\
-				ft_memdel.c					\
-				ft_memmove.c				\
-				ft_memrealloc.c				\
-				ft_memset.c					\
-				ft_pow.c					\
-				ft_printlst.c				\
-				ft_putchar_fd.c				\
-				ft_putchar.c				\
-				ft_putendl_fd.c				\
-				ft_putendl.c				\
-				ft_putnbr_fd.c				\
-				ft_putnbr.c					\
-				ft_putstr_fd.c				\
-				ft_putstr.c					\
-				ft_sqrt.c					\
-				ft_strcat.c					\
-				ft_strchr.c					\
-				ft_strclr.c					\
-				ft_strcmp.c					\
-				ft_strcpy.c					\
-				ft_strdel.c					\
-				ft_strdup.c					\
-				ft_strequ.c					\
-				ft_striter.c				\
-				ft_striteri.c				\
-				ft_strjoin.c				\
-				ft_strlcat.c				\
-				ft_strlen.c					\
-				ft_strmap.c					\
-				ft_strmapi.c				\
-				ft_strncat.c				\
-				ft_strncmp.c				\
-				ft_strncpy.c				\
-				ft_strndup.c				\
-				ft_strnequ.c				\
-				ft_strnew.c					\
-				ft_strnstr.c				\
-				ft_strrchr.c				\
-				ft_strsplit.c				\
-				ft_strstr.c					\
-				ft_strsub.c					\
-				ft_strtrim.c				\
-				ft_swap.c					\
-				ft_tolower.c				\
-				ft_toupper.c				\
-				ft_wordcount.c				\
-				get_next_line.c			\
+SRC_NAME 	=	ft_atoi.c									\
+				ft_bzero.c									\
+				ft_digitcount.c								\
+				ft_isalnum.c								\
+				ft_isalpha.c								\
+				ft_isascii.c								\
+				ft_isdigit.c								\
+				ft_isprint.c								\
+				ft_islower.c								\
+				ft_isupper.c								\
+				ft_iswhitespace.c							\
+				ft_itoa.c									\
+				ft_lstadd.c									\
+				ft_lstaddend.c								\
+				ft_lstdel.c									\
+				ft_lstdelone.c								\
+				ft_lstiter.c								\
+				ft_lstlast.c								\
+				ft_lstmap.c									\
+				ft_lstnew.c									\
+				ft_lstreverse.c								\
+				ft_lstsize.c								\
+				ft_memalloc.c								\
+				ft_memccpy.c								\
+				ft_memchr.c									\
+				ft_memcmp.c									\
+				ft_memcpy.c									\
+				ft_memdel.c									\
+				ft_memmove.c								\
+				ft_memrealloc.c								\
+				ft_memset.c									\
+				ft_pow.c									\
+				ft_printlst.c								\
+				ft_putchar_fd.c								\
+				ft_putchar.c								\
+				ft_putendl_fd.c								\
+				ft_putendl.c								\
+				ft_putnbr_fd.c								\
+				ft_putnbr.c									\
+				ft_putstr_fd.c								\
+				ft_putstr.c									\
+				ft_sqrt.c									\
+				ft_strcat.c									\
+				ft_strchr.c									\
+				ft_strclr.c									\
+				ft_strcmp.c									\
+				ft_strcpy.c									\
+				ft_strdel.c									\
+				ft_strdup.c									\
+				ft_strequ.c									\
+				ft_striter.c								\
+				ft_striteri.c								\
+				ft_strjoin.c								\
+				ft_strlcat.c								\
+				ft_strlen.c									\
+				ft_strmap.c									\
+				ft_strmapi.c								\
+				ft_strncat.c								\
+				ft_strncmp.c								\
+				ft_strncpy.c								\
+				ft_strndup.c								\
+				ft_strnequ.c								\
+				ft_strnew.c									\
+				ft_strnstr.c								\
+				ft_strrchr.c								\
+				ft_strsplit.c								\
+				ft_strstr.c									\
+				ft_strsub.c									\
+				ft_strtrim.c								\
+				ft_swap.c									\
+				ft_tolower.c								\
+				ft_toupper.c								\
+				ft_wordcount.c								\
+				get_next_line.c								\
+				$(PRINTF_PATH)/$(CONV_PATH)/cast_nbrs.c		\
+				$(PRINTF_PATH)/$(CONV_PATH)/char_strings.c	\
+				$(PRINTF_PATH)/$(CONV_PATH)/float_args.c	\
+				$(PRINTF_PATH)/$(CONV_PATH)/float.c			\
+				$(PRINTF_PATH)/$(CONV_PATH)/numbers.c		\
+				$(PRINTF_PATH)/$(CONV_PATH)/pct_ptr.c		\
+				$(PRINTF_PATH)/$(CONV_PATH)/pct_ptr.c		\
+				$(PRINTF_PATH)/$(SRC_PATH)/buffer.c			\
+				$(PRINTF_PATH)/$(SRC_PATH)/check_flag_pad.c \
+				$(PRINTF_PATH)/$(SRC_PATH)/conv_specifiers.c\
+				$(PRINTF_PATH)/$(SRC_PATH)/ft_printf.c		\
+				$(PRINTF_PATH)/$(SRC_PATH)/padding.c		\
+				$(PRINTF_PATH)/$(SRC_PATH)/parse_args.c		\
+				$(PRINTF_PATH)/$(UTILS_PATH)/find_conv.c	\
+				$(PRINTF_PATH)/$(UTILS_PATH)/find_flag.c	\
+				$(PRINTF_PATH)/$(UTILS_PATH)/ft_get_wchar.c \
+				$(PRINTF_PATH)/$(UTILS_PATH)/ft_lltoa_base.c\
+				$(PRINTF_PATH)/$(UTILS_PATH)/ft_nbrlen.c	\
+				$(PRINTF_PATH)/$(UTILS_PATH)/ft_wcharlen.c 	\
+				$(PRINTF_PATH)/$(UTILS_PATH)/ft_wstrlen.c 	\
+				$(PRINTF_PATH)/$(UTILS_PATH)/maths.c		\
+				$(PRINTF_PATH)/$(UTILS_PATH)/to_upper.c		\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -147,6 +175,10 @@ re				: 	fclean all
 # Compilation rules
 $(OBJ_PATH)		:
 					@mkdir $(OBJ_PATH) 2> /dev/null || true
+					@mkdir $(OBJ_PATH)/$(PRINTF_PATH) 2> /dev/null || true
+					@mkdir $(OBJ_PATH)/$(PRINTF_PATH)/$(CONV_PATH) 2> /dev/null || true
+					@mkdir $(OBJ_PATH)/$(PRINTF_PATH)/$(SRC_PATH) 2> /dev/null || true
+					@mkdir $(OBJ_PATH)/$(PRINTF_PATH)/$(UTILS_PATH) 2> /dev/null || true
 
 $(NAME)			:	$(OBJ)
 					@ar rc $(NAME)  $(OBJ)

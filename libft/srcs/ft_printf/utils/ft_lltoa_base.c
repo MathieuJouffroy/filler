@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/15 18:27:07 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/06/04 20:33:42 by mjouffro         ###   ########.fr       */
+/*   Created: 2019/04/11 19:56:52 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/04/11 21:27:53 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../includes/ft_printf.h"
 
-typedef struct				s_gnl
+char				*ft_lltoa_base(uintmax_t nb, intmax_t base)
 {
-	int						fd;
-	char					*data;
-}							t_gnl;
+	uintmax_t		nb_size;
+	static char		str[22];
+	char			*strbase;
 
-int							get_next_line(const int fd, char **line);
-
-#endif
+	ft_bzero(str, 22);
+	strbase = "0123456789abcdef";
+	nb_size = ft_nbrlen(nb, base);
+	str[nb_size] = '\0';
+	while (nb_size--)
+	{
+		str[nb_size] = strbase[(nb % base)];
+		nb /= base;
+	}
+	return (str);
+}

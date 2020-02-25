@@ -6,7 +6,7 @@
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 18:29:09 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/05/31 19:28:24 by mjouffro         ###   ########.fr       */
+/*   Updated: 2019/06/04 20:26:58 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,23 @@ int		gnl_exit(char *line)
 int		errors(t_filler *filler, int i)
 {
 	if (i == 0)
-		dprintf(2, "usage : $$$ exec pPLAYER_NUMBER : [PLAYER_NAME]\n");
+		ft_dprintf(2, "usage : $$$ exec pPLAYER_NUMBER : [PLAYER_NAME]\n");
 	if (i == 1)
-		dprintf(2, "usage : Plateau MAP_ROW MAP_COL:\n");
+		ft_dprintf(2, "usage : Plateau MAP_ROW MAP_COL:\n");
 	if (i == 2)
-		dprintf(2, "Plateau : Memory Allocation Error\n");
+		ft_dprintf(2, "Plateau : Memory Allocation Error\n");
 	if (i == 3)
-		dprintf(2, "Plateau Format Error.\n");
+		ft_dprintf(2, "Plateau Format Error.\n");
 	if (i == 4)
-		dprintf(2, "usage : Piece PIECE_ROW PIECE_COL:\n");
+		ft_dprintf(2, "usage : Piece PIECE_ROW PIECE_COL:\n");
 	if (i == 5)
-		dprintf(2, "Piece : Memory Allocation Error.\n");
+		ft_dprintf(2, "Piece : Memory Allocation Error.\n");
 	if (i == 6)
-		dprintf(2, "Piece Format Error.\n");
+		ft_dprintf(2, "Piece Format Error.\n");
 	if (i == 7)
-		dprintf(2, "usage : Plateau size can't change during game.\n");
+		ft_dprintf(2, "usage : Plateau size can't change during game.\n");
 	if (i == 8)
-		dprintf(2, "Plateau : line Format Error.\n");
+		ft_dprintf(2, "Plateau : line Format Error.\n");
 	free_struct(filler);
 	return (0);
 }

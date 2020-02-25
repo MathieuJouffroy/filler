@@ -6,7 +6,7 @@
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 18:29:18 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/05/31 19:22:07 by mjouffro         ###   ########.fr       */
+/*   Updated: 2019/06/04 21:22:24 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int				get_map_size(t_filler *filler)
 	i += ft_digitcount(filler->map.width);
 	if (line[8 + i] != ':')
 		ret = 0;
+	if (line[8 + ++i] != '\0')
+		ret = 0;
 	ft_memdel((void**)&line);
 	return (ret);
 }
@@ -85,6 +87,8 @@ int				get_piece_size(t_filler *filler)
 		ret = 0;
 	i += ft_digitcount(filler->piece.width);
 	if (line[6 + i] != ':')
+		ret = 0;
+	if (line[6 + ++i] != '\0')
 		ret = 0;
 	ft_memdel((void**)&line);
 	return (ret);

@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjouffro <mjouffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/15 18:27:07 by mjouffro          #+#    #+#             */
-/*   Updated: 2019/06/04 20:33:42 by mjouffro         ###   ########.fr       */
+/*   Created: 2019/04/11 19:57:26 by mjouffro          #+#    #+#             */
+/*   Updated: 2019/04/11 21:27:19 by mjouffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../includes/ft_printf.h"
 
-typedef struct				s_gnl
+int		ft_nbrlen(uintmax_t nb, intmax_t base)
 {
-	int						fd;
-	char					*data;
-}							t_gnl;
+	int				len;
 
-int							get_next_line(const int fd, char **line);
-
-#endif
+	len = 0;
+	if (nb == 0)
+		return (1);
+	while (nb)
+	{
+		nb /= base;
+		len += 1;
+	}
+	return (len);
+}

@@ -38,24 +38,36 @@ echo "--- new script ---" >> script.out
 
 testp1 map00 $yourplayer $player1
 testp1 map01 $yourplayer $player1
+testp1 map01 $player1 $yourplayer
+testp1 map01 $player1 $yourplayer
 #testp1 map02 $yourplayer $player1
 
 testp1 map00 $yourplayer $player2
 testp1 map01 $yourplayer $player2
+testp1 map00 $player2 $yourplayer
+testp1 map01 $player2 $yourplayer
 #testp1 map02 $yourplayer $player2
 
 testp1 map00 $yourplayer $player3
 testp1 map01 $yourplayer $player3
+testp1 map00 $player3 $yourplayer
+testp1 map01 $player3 $yourplayer
 #testp1 map02 $yourplayer $player3
 
 testp1 map00 $yourplayer $player4
 testp1 map01 $yourplayer $player4
+testp1 map00 $player4 $yourplayer
+testp1 map01 $player4 $yourplayer
 #testp1 map02 $yourplayer $player4
 
 testp1 map00 $yourplayer $player5
 testp1 map01 $yourplayer $player5
+testp1 map00 $player5 $yourplayer
+testp1 map01 $player5 $yourplayer
 #testp1 map02 $yourplayer $player5
 
 testp1 map00 $yourplayer $player6
 testp1 map01 $yourplayer $player6
+testp1 map00 $player6 $yourplayer
+testp1 map01 $player6 $yourplayer
 #testp1 map02 $yourplayer $player6
